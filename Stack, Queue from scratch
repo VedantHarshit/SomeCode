@@ -1,0 +1,109 @@
+//Driver class
+public class Driver
+{
+    public static void main(String []args)
+    {
+        Stack ob = new Stack();
+        ob.push('R');
+        ob.push('a');
+        ob.push('m');
+        System.out.println(ob.peek());
+        Queue ob1 = new Queue();
+        ob1.enqueue('R');
+        ob1.enqueue('a');
+        ob1.enqueue('m');
+        System.out.println(ob1.peek());
+    }
+}
+
+
+//Blueprint of a node
+class Node
+{
+    char c;
+    Node next;
+    Node(char c)
+    {
+        this.c = c;
+    }
+}
+
+//Wrapping up reference to top node and associated functions for Stack 
+class Stack
+{
+    Node top = null;
+    
+    public void push(char c)
+    {
+        Node newNode = new Node(c);
+        if(top == null)
+        {
+            top = newNode;
+        }
+        else
+        {
+           Node temp = top;
+           top = newNode;
+           top.next = temp; 
+        }
+    }
+    
+    public char pop()
+    {
+        if(top == null)
+        {
+           return ' ';
+        }
+        else
+        {
+            char c = top.c;
+            top = top.next;
+            return c;
+        } 
+    }
+    
+    public char peek()
+    {
+        return top.c;
+    }
+}
+
+//Wrapping up reference to top node and associated functions for Queue
+class Queue
+{
+    Node front = null;
+    Node rear = null;
+    
+    public void enqueue(char c)
+    {
+        Node newNode = new Node(c);
+        if(front == null)
+        {
+            front = newNode;
+            rear = newNode;
+        }
+        else
+        {
+            rear.next = newNode;
+        }
+    }
+    
+    public char dequeue()
+    {
+        if(front == null)
+        {
+            return ' ';
+        }
+        else
+        {
+            char c = front.c;
+            front = front.next;
+            return c;
+        }
+    }
+    
+    public char peek()
+    {
+        return front.c;
+    }
+}
